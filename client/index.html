@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Premium IoT health monitoring interface for elderly care with real-time vitals, fall detection, and location awareness.">
+  <title>ElderGuard | Smart Elderly Health Monitoring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="theme-dark page-landing">
+  <a class="skip-link" href="#mainContent">Skip to main content</a>
+
+  <header class="site-header">
+    <nav class="navbar" id="topNav" aria-label="Main navigation">
+      <div class="navbar-container">
+        <a href="#home" class="brand" aria-label="ElderGuard home">
+          <span class="brand-mark" aria-hidden="true">EG</span>
+          <span class="brand-text">ElderGuard</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#about" class="nav-link">About</a>
+          <a href="#features" class="nav-link">Features</a>
+          <a href="#workflow" class="nav-link">How It Works</a>
+          <a href="#contact" class="nav-link">Contact</a>
+          <button class="btn btn-nav" id="loginButton" type="button" aria-haspopup="dialog" aria-controls="loginModal">Signup/Login</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main id="mainContent">
+    <section class="hero" id="home">
+      <div class="hero-bg-orb orb-a" aria-hidden="true"></div>
+      <div class="hero-bg-orb orb-b" aria-hidden="true"></div>
+
+      <div class="container hero-grid">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">IIOT and Robotics Project</p>
+          <h1>Real-time Health Intelligence for Safer Elderly Care</h1>
+          <p class="hero-subtext">
+            Track temperature, heart rate, oxygen saturation, falls, and location in one refined monitoring experience built for rapid response.
+          </p>
+          <div class="hero-actions">
+            <button class="btn btn-primary" type="button" data-scroll-target="features">Explore Features</button>
+            <a class="btn btn-ghost" href="dashboard.html">View Dashboard</a>
+          </div>
+          <div class="hero-stats">
+            <article>
+              <h3>2s</h3>
+              <p>Refresh cycle</p>
+            </article>
+            <article>
+              <h3>24x7</h3>
+              <p>Monitoring readiness</p>
+            </article>
+            <article>
+              <h3>5+</h3>
+              <p>Critical health signals</p>
+            </article>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal delay-1">
+          <div class="hero-panel-header">
+            <p>Live Snapshot</p>
+            <span>IoT Stream</span>
+          </div>
+          <div class="live-grid">
+            <div class="live-item">
+              <p>Temperature</p>
+              <h4>36.8<span>deg C</span></h4>
+            </div>
+            <div class="live-item">
+              <p>Heart Rate</p>
+              <h4>79<span>bpm</span></h4>
+            </div>
+            <div class="live-item">
+              <p>SpO2</p>
+              <h4>98<span>%</span></h4>
+            </div>
+            <div class="live-item danger">
+              <p>Fall Risk</p>
+              <h4>Normal</h4>
+            </div>
+          </div>
+          <div class="hero-wave" aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container split-layout">
+        <div class="reveal">
+          <p class="section-label">About The System</p>
+          <h2>Built for caregivers who need confidence, context, and speed.</h2>
+          <p>
+            ElderGuard combines biomedical sensing with cloud-backed analytics. Arduino hardware captures continuous vitals and motion activity, Node.js APIs process incoming payloads, and MongoDB stores records for historical insight.
+          </p>
+          <p>
+            The interface is designed for instant readability under pressure: strong hierarchy, clear status cues, and emergency-focused visual patterns.
+          </p>
+        </div>
+        <div class="glass-card reveal delay-1">
+          <h3>Sensor Stack</h3>
+          <ul class="check-list">
+            <li>MAX30102 for BPM and SpO2</li>
+            <li>LM35 for body temperature</li>
+            <li>ADXL345 for fall pattern detection</li>
+            <li>NEO-6M for GPS latitude and longitude</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-label">Core Features</p>
+          <h2>Everything essential for remote elderly monitoring.</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card reveal">
+            <h3>Temperature Monitoring</h3>
+            <p>Continuous temperature capture with clear threshold states for early warning.</p>
+          </article>
+          <article class="feature-card reveal delay-1">
+            <h3>BPM Tracking</h3>
+            <p>Live heart rate updates with trend-friendly visualization and status labels.</p>
+          </article>
+          <article class="feature-card reveal delay-2">
+            <h3>SpO2 Monitoring</h3>
+            <p>Oxygen saturation tracking to surface respiratory risk changes quickly.</p>
+          </article>
+          <article class="feature-card reveal">
+            <h3>Fall Detection</h3>
+            <p>Event-focused fall detection with critical UI highlighting for urgent action.</p>
+          </article>
+          <article class="feature-card reveal delay-1">
+            <h3>GPS Tracking</h3>
+            <p>Location visibility for safer navigation and faster emergency intervention.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="workflow">
+      <div class="container">
+        <div class="section-head reveal">
+          <p class="section-label">How It Works</p>
+          <h2>From wearable sensing to caregiver decision support.</h2>
+        </div>
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <span>01</span>
+            <h3>Sensing</h3>
+            <p>Vitals, motion, and location data are sampled by Arduino-connected sensors.</p>
+          </article>
+          <article class="timeline-item reveal delay-1">
+            <span>02</span>
+            <h3>Transmission</h3>
+            <p>Data is transmitted securely to the Node.js backend through WiFi payloads.</p>
+          </article>
+          <article class="timeline-item reveal delay-2">
+            <span>03</span>
+            <h3>Processing</h3>
+            <p>Server-side validation and storage in MongoDB create dependable live + history data.</p>
+          </article>
+          <article class="timeline-item reveal delay-3">
+            <span>04</span>
+            <h3>Visualization</h3>
+            <p>The dashboard presents cards, charts, alerts, and map context in real time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta" id="contact">
+      <div class="container cta-box reveal">
+        <h2>Ready to launch caregiver monitoring?</h2>
+        <p>Sign in to open the live dashboard and monitor incoming sensor streams instantly.</p>
+        <div class="cta-actions">
+          <button class="btn btn-primary" type="button" id="ctaLoginBtn">Signup/Login</button>
+          <a class="btn btn-ghost" href="dashboard.html">Open Dashboard</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <h3>ElderGuard</h3>
+        <p>Modern health intelligence for elderly safety and faster intervention workflows.</p>
+      </div>
+      <p>Academic Project | IIOT and Robotics | Node.js + MongoDB + Arduino</p>
+    </div>
+  </footer>
+
+  <div class="modal" id="loginModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+      <button class="modal-close" type="button" id="closeLoginModal" aria-label="Close login dialog">x</button>
+      <p class="section-label">Secure Access</p>
+      <h2 id="loginTitle">Sign in to dashboard</h2>
+      <p class="muted">Use configured credentials to enter the real-time monitoring console.</p>
+
+      <div class="modal-scroll-body">
+        <form id="loginForm" class="form-stack">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="caregiver@example.com">
+
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" required autocomplete="current-password" placeholder="Enter password">
+
+          <button class="btn btn-primary" type="submit" id="submitLogin">Login</button>
+        </form>
+
+        <p class="auth-switch">
+          Don't have an account?
+          <button class="auth-switch-btn" id="openSignupFromLogin" type="button">Create now</button>
+        </p>
+
+        <p id="loginFeedback" class="feedback" aria-live="polite"></p>
+        <p class="helper">Use your registered account credentials to access the dashboard.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="signupModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal="true"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="signupTitle">
+      <button class="modal-close" type="button" id="closeSignupModal" aria-label="Close signup dialog">x</button>
+      <p class="section-label">Create Account</p>
+      <h2 id="signupTitle">Register caregiver profile</h2>
+      <p class="muted">Create your account to securely access the real-time monitoring dashboard.</p>
+
+      <div class="modal-scroll-body">
+        <form id="signupForm" class="form-stack">
+          <label for="signupName">Name</label>
+          <input id="signupName" name="name" type="text" required autocomplete="name" placeholder="Caregiver name">
+
+          <label for="signupContact">Contact</label>
+          <input id="signupContact" name="contact" type="tel" inputmode="numeric" required placeholder="10-digit contact number">
+
+          <label for="signupEmail">Email</label>
+          <input id="signupEmail" name="email" type="email" required autocomplete="email" placeholder="caregiver@example.com">
+
+          <label for="signupPassword">Password</label>
+          <input id="signupPassword" name="password" type="password" required autocomplete="new-password" placeholder="Create password">
+
+          <label for="signupOtp">Gmail OTP</label>
+          <input id="signupOtp" name="gmail_otp" type="text" inputmode="numeric" required placeholder="6-digit OTP">
+
+          <button class="btn btn-primary" type="submit" id="submitSignup">Create Account</button>
+        </form>
+
+        <p class="auth-switch">
+          Already have an account?
+          <button class="auth-switch-btn" id="openLoginFromSignup" type="button">Back to login</button>
+        </p>
+
+        <p id="signupFeedback" class="feedback" aria-live="polite"></p>
+        <p class="helper">Enter all required details exactly as intended for your caregiver account.</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

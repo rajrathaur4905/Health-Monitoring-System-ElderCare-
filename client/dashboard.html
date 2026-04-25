@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ElderGuard Dashboard | Live Health Monitoring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+</head>
+<body class="theme-dark page-dashboard">
+  <header class="site-header">
+    <nav class="navbar" id="topNav" aria-label="Dashboard navigation">
+      <div class="navbar-container">
+        <a href="index.html" class="brand" aria-label="Go to home page">
+          <span class="brand-mark" aria-hidden="true">EG</span>
+          <span class="brand-text">ElderGuard</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#live" class="nav-link">Vitals</a>
+          <a href="#trends" class="nav-link">Trends</a>
+          <a href="#location" class="nav-link">Location</a>
+          <span id="currentUser" class="user-chip">Welcome, User</span>
+          <button class="btn btn-nav" onclick="logout()">Logout</button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="dashboard-main">
+    <section class="dashboard-hero">
+      <div class="container reveal">
+        <p class="section-label">Realtime Console</p>
+        <h1>Elderly Health Monitoring Dashboard</h1>
+        <p class="muted">Live vitals, fall awareness, trend analytics, and GPS context for caregivers.</p>
+      </div>
+    </section>
+
+    <section class="container">
+      <div id="loadingIndicator" class="loading-card">
+        <div class="spinner"></div>
+        <p>Loading live sensor data...</p>
+      </div>
+
+      <div id="dashboardContent" class="dashboard-content" style="display: none;">
+        <div class="status-summary reveal" id="live">
+          <h2>Live Health Status</h2>
+          <p id="lastUpdateTime" class="last-update">Last update: Waiting for feed...</p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="data-card reveal temperature-card">
+            <div class="card-head">
+              <p>Temperature</p>
+              <span>deg C</span>
+            </div>
+            <h3><span id="temperatureValue">--</span><small>deg C</small></h3>
+            <p id="tempStatus" class="status-pill">Normal</p>
+            <div class="meter"><div id="tempBar" class="meter-fill"></div></div>
+          </article>
+
+          <article class="data-card reveal delay-1 heart-card">
+            <div class="card-head">
+              <p>Heart Rate</p>
+              <span>BPM</span>
+            </div>
+            <h3><span id="bpmValue">--</span><small>bpm</small></h3>
+            <p id="bpmStatus" class="status-pill">Normal</p>
+            <div class="meter"><div id="bpmBar" class="meter-fill"></div></div>
+          </article>
+
+          <article class="data-card reveal delay-2 spo2-card">
+            <div class="card-head">
+              <p>SpO2</p>
+              <span>Oxygen</span>
+            </div>
+            <h3><span id="spo2Value">--</span><small>%</small></h3>
+            <p id="spo2Status" class="status-pill">Good</p>
+            <div class="meter"><div id="spo2Bar" class="meter-fill"></div></div>
+          </article>
+
+          <article class="data-card fall-card reveal delay-3">
+            <div class="card-head">
+              <p>Fall Detection</p>
+              <span>Safety</span>
+            </div>
+            <h3 id="fallStatus" class="fall-status-normal">NORMAL</h3>
+            <p id="fallAlert" class="fall-alert" style="display:none;">FALL DETECTED</p>
+          </article>
+        </div>
+
+        <section class="location-wrap reveal" id="location">
+          <div class="location-meta">
+            <h2>Live GPS</h2>
+            <p>Latitude: <strong id="latValue">--</strong></p>
+            <p>Longitude: <strong id="lonValue">--</strong></p>
+          </div>
+          <div id="map" class="map-container"></div>
+        </section>
+
+        <section class="chart-section" id="trends">
+          <div class="section-head reveal">
+            <p class="section-label">Analytics</p>
+            <h2>Vitals Trend Analysis</h2>
+          </div>
+
+          <div class="time-range-selector reveal">
+            <button class="range-btn active" onclick="changeTimeRange(1)">1 Hour</button>
+            <button class="range-btn" onclick="changeTimeRange(2)">3 Hours</button>
+            <button class="range-btn" onclick="changeTimeRange(3)">6 Hours</button>
+            <button class="range-btn" onclick="changeTimeRange(4)">24 Hours</button>
+          </div>
+
+          <div class="charts-grid">
+            <article class="chart-card reveal">
+              <h3>Temperature vs Time</h3>
+              <canvas id="temperatureChart"></canvas>
+            </article>
+            <article class="chart-card reveal delay-1">
+              <h3>BPM vs Time</h3>
+              <canvas id="bpmChart"></canvas>
+            </article>
+            <article class="chart-card reveal delay-2">
+              <h3>SpO2 vs Time</h3>
+              <canvas id="spo2Chart"></canvas>
+            </article>
+            <article class="chart-card full-width reveal">
+              <h3>Combined Trends</h3>
+              <canvas id="combinedChart"></canvas>
+            </article>
+          </div>
+        </section>
+
+        <section class="statistics-section reveal">
+          <h2>Health Statistics (Last 24 Hours)</h2>
+          <div class="stats-grid">
+            <article class="stat-card">
+              <p>Avg Temperature</p>
+              <h3 id="avgTemp">--</h3>
+            </article>
+            <article class="stat-card">
+              <p>Avg Heart Rate</p>
+              <h3 id="avgBpm">--</h3>
+            </article>
+            <article class="stat-card">
+              <p>Avg SpO2</p>
+              <h3 id="avgSpo2">--</h3>
+            </article>
+            <article class="stat-card">
+              <p>Fall Alerts</p>
+              <h3 id="fallCount">0</h3>
+            </article>
+          </div>
+        </section>
+
+        <section class="alerts-section reveal">
+          <h2>Recent Fall Alerts</h2>
+          <div id="alertsList" class="alerts-list">
+            <p class="no-data">No fall alerts in recent history</p>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
